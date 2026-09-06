@@ -25,16 +25,6 @@ function updateLogoHeight() {
 }
 
 if (header) {
-  const onScrollHeader = () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    updateHeaderHeight();
-  };
-
-  window.addEventListener('scroll', onScrollHeader);
   window.addEventListener('resize', () => {
     updateLogoHeight();
     updateHeaderHeight();

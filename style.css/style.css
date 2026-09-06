@@ -49,9 +49,12 @@ header {
   z-index: 2000;
   width: 100%;
   margin: 0;
-  padding: 10px 0 0; /* remove bottom padding */
-  transition: all 0.22s ease;
-  min-height: 0; /* allow header to size to its children */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: none;
+  min-height: 84px;
   height: auto;
   background: rgba(6,7,11,0.45);
   backdrop-filter: blur(6px);
@@ -60,8 +63,8 @@ header {
 }
 
 .header-inner {
-  width: min(1200px, 90%);
-  margin: 0 auto;
+  width: auto;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -71,28 +74,22 @@ header {
 /* Ensure header-inner keeps contrast behind nav links on busy backgrounds */
 .header-inner {
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
-  padding: 6px 10px 0; /* remove bottom padding inside header-inner */
+  padding: 0 10px;
   border-radius: 12px;
-}
-
-header.scrolled {
-  padding: 12px 0;
-  min-height: 84px;
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: var(--logo-height);
+  width: 132px;
+  height: 66px;
   background: transparent;
   padding: 0;
   border-radius: 0;
   transition: none !important;
-  position: absolute;
-  left: 18px;
-  top: 12px; /* anchor at top-left edge */
+  position: static;
+  top: 0;
   transform: none;
   z-index: 2100;
 }
@@ -122,14 +119,14 @@ header.scrolled {
 
 @media (max-width: 980px) {
   .logo {
-    width: 220px;
-    height: 110px;
+    width: 132px;
+    height: 66px;
   }
-  :root { --logo-height: 110px; }
+  :root { --logo-height: 66px; }
   header {
     min-height: 120px;
   }
-  .logo { left: 14px; top: 10px; }
+  .logo { margin-left: 6px; }
 }
 
 @media (max-width: 760px) {
@@ -140,27 +137,9 @@ header.scrolled {
   :root { --logo-height: 88px; }
   header {
     min-height: 88px;
-    padding: 12px 0;
+    padding: 0;
   }
-  .logo { left: 10px; top: 8px; }
-}
-
-/* Compact header and logo when header has `.scrolled` */
-header.scrolled {
-  min-height: 84px;
-  padding: 8px 0;
-}
-
-header.scrolled .logo {
-  width: calc(var(--logo-width) * 0.6);
-  height: calc(var(--logo-width) * 0.6 / 2);
-  left: calc(var(--logo-left-offset) * 0.6);
-  top: 8px;
-  transform: none;
-}
-
-header.scrolled .header-inner {
-  padding-left: 12px;
+  .logo { margin-left: 10px; }
 }
 
 /* Ensure anchor targets are not hidden under the sticky header */
@@ -355,32 +334,13 @@ main {
   }
 }
 
-/* Tighter spacing specifically between projects and contact */
-.projects {
-  padding-bottom: 0; /* remove leftover bottom gap after projects */
-}
-
-.contact {
-  padding-top: 0; /* remove leftover top gap before contact */
-}
-
-@media (max-width: 980px) {
-  .projects { padding-bottom: 0; }
-  .contact { padding-top: 0; }
-}
-
-@media (max-width: 420px) {
-  .projects { padding-bottom: 0; }
-  .contact { padding-top: 0; }
-}
-
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 48px;
   min-height: 80vh;
-  padding: 40px 0 0;
+  padding: 40px 0 32px;
 }
 
 .eyebrow {
@@ -601,7 +561,7 @@ main {
   :root { --logo-width: 160px; --logo-left-offset: 10px; }
   .logo { width: 160px; height: 88px; left: var(--logo-left-offset); }
   header { min-height: 88px; padding: 12px 0; }
-  .header-inner { padding-left: calc(var(--logo-width) + var(--logo-left-offset) + 8px); }
+  .header-inner { padding-left: 0; }
   .hero { grid-template-columns: 1fr; gap: 18px; }
   .image-frame img { min-height: 280px; }
   .about-grid, .service-grid, .project-grid { grid-template-columns: 1fr; }
@@ -648,7 +608,6 @@ main {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 110px;
 }
 
 .stat-item {
@@ -700,7 +659,7 @@ main {
 }
 
 .project-one {
-  background: linear-gradient(135deg, rgba(255, 91, 91, 0.18), rgba(12, 14, 19, 0.9)), url('../images/good half card.jpeg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(255, 91, 91, 0.18), rgba(12, 14, 19, 0.9)), url('../images/good-half-card-transparent.png') center/cover no-repeat;
 }
 
 .project-two {
@@ -746,7 +705,6 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   padding: 32px;
-  margin-top: 110px;
 }
 
 .contact-copy {
@@ -860,7 +818,7 @@ footer {
   }
 
   .section-spacing {
-    padding-top: 80px;
+    padding: 40px 0;
   }
 
   .about-grid,
@@ -891,5 +849,11 @@ footer {
   .stat-card {
     position: static;
     margin-top: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-spacing {
+    padding: 32px 0;
   }
 }
